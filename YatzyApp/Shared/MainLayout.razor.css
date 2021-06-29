@@ -1,0 +1,11 @@
+.top-row {
+    display: flex;
+    justify-content: space-around;
+    background-color: #B84E36;
+    align-items: center;
+    border-bottom: 1px solid #d6d5d5;
+    height: 3.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

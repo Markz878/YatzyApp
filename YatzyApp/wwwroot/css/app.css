@@ -1,0 +1,71 @@
+﻿html, body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-image: url('../images/yahtzee.webp');
+    background-size: cover;
+}
+
+.btn {
+    background-color: rgb(41, 129, 211);
+    color: white;
+    border: 1px solid gray;
+    padding: 0.8rem 1.2rem;
+    text-align: center;
+    font-size: 1.1em;
+    display: inline-block;
+    margin: 0.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.name-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-group {
+    font-size: 1.1em;
+    display: block;
+}
+
+.btn:hover {
+    background-color: blue;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }

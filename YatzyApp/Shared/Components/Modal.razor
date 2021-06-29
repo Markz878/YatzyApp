@@ -1,0 +1,25 @@
+﻿@if (ShowDialog)
+{
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-header">
+                <h2>@Header</h2>
+                <span class="close" @onclick="()=>ShowDialog=false">&times;</span>
+            </div>
+            <div class="modal-body">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@code {
+    [Parameter]
+    public bool ShowDialog { get; set; }
+    [Parameter]
+    public string Header { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

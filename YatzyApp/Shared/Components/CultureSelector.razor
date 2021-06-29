@@ -1,0 +1,11 @@
+﻿<div class="selector">
+    <label>
+        @Localizer["SelectCulture"]
+        <select @bind="@Culture">
+            @foreach (var culture in supportedCultures)
+            {
+                <option value="@culture">@culture.DisplayName</option>
+            }
+        </select>
+    </label>
+</div>

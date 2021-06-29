@@ -1,0 +1,61 @@
+﻿@page "/"
+@inject IStringLocalizer<Resource> localizer
+
+<div class="container">
+    <button class="btn" @onclick="()=>AddPlayerModalVisible=true">@localizer["AddPlayer"]</button>
+    <button class="btn" @onclick="ClearPoints">@localizer["ClearPoints"]</button>
+    <button class="btn" @onclick="ClearPlayers">@localizer["ClearPlayers"]</button>
+</div>
+
+@if (Players.Count > 0)
+{
+    <div class="container">
+        <div class="player-column">
+            <div class="block font-20em empty"></div>
+            @foreach (var item in Players[0].YatzyPoints.DieNumbers)
+            {
+                <div class="block thick-border">@item.Name</div>
+            }
+            <div class="block thick-border">@localizer["Sum"]</div>
+            <div class="block thick-border">@localizer["Bonus"]</div>
+            @foreach (var item in Players[0].YatzyPoints.Combinations)
+            {
+                <div class="block thick-border">@localizer[item.Name]</div>
+            }
+            <div class="block thick-border">@localizer["Total"]</div>
+        </div>
+        @foreach (var p in Players)
+        {
+            <div class="player-column">
+                <div class="block thick-border font-bold font-20em">@p.Name</div>
+                @foreach (var item in p.YatzyPoints.DieNumbers)
+                {
+                    <input class="block border" @bind="item.Points" @onfocusout="SaveState"/>
+                }
+                <div class="block thick-border">@p.YatzyPoints.DieNumberSum</div>
+                <div class="block thick-border">@p.YatzyPoints.Bonus</div>
+                @foreach (var item in p.YatzyPoints.Combinations)
+                {
+                    <input class="block border" @bind="item.Points" @onfocusout="SaveState"/>
+                }
+                <div class="block thick-border">@p.YatzyPoints.TotalSum</div>
+            </div>
+        }
+    </div>
+}
+
+<Modal Header="@localizer["AddPlayer"]" ShowDialog="AddPlayerModalVisible">
+    <EditForm OnValidSubmit="InsertPlayer" Model="NewPlayer">
+        <DataAnnotationsValidator/>
+        <div class="form-group">
+            <label for="player-name"><b>@localizer["PlayerName"]</b></label>
+            <InputText id="player-name" class="name-input" @bind-Value="NewPlayer.Name" placeholder="@localizer["PlayerName"]" />
+            <ValidationMessage For="(()=>NewPlayer.Name)"/>
+        </div>
+        <button type="submit" class="btn btn-primary">@localizer["Submit"]</button>
+        <button class="btn btn-outline-secondary" @onclick="()=>AddPlayerModalVisible=false">@localizer["Close"]</button>
+    </EditForm>
+</Modal>
+
+
+
