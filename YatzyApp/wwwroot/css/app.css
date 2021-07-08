@@ -18,6 +18,11 @@
     border-radius: 10px;
 }
 
+    .btn:hover {
+        background-color: blue;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
 .name-input {
     width: 100%;
     padding: 12px 20px;
@@ -34,10 +39,48 @@
     display: block;
 }
 
-.btn:hover {
-    background-color: blue;
-    border: 1px solid rgb(0, 0, 0);
+.loader-message {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 2rem;
+    position: fixed;
+    width: 100%;
 }
+
+.loader {
+    border: 16px solid #f3f3f3;
+    margin: auto;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    position: relative;
+    top: 5rem;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
