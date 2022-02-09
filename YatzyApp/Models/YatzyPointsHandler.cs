@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using static YatzyApp.Extensions.HelperMethods;
 
 namespace YatzyApp.Models
 {
     public class YatzyPointsHandler
     {
         public List<YatzyPoint> DieNumbers { get; set; } = new();
-        public int DieNumberSum => DieNumbers.Sum(x => ParsePoint(x.Points));
+        public int DieNumberSum => DieNumbers.Sum(x => x.Points ?? 0);
         public int Bonus => DieNumberSum >= 63 ? 50 : 0;
         public List<YatzyPoint> Combinations { get; set; } = new();
-        public int TotalSum => DieNumberSum + Bonus + Combinations.Sum(x => ParsePoint(x.Points));
+        public int TotalSum => DieNumberSum + Bonus + Combinations.Sum(x => x.Points ?? 0);
+
         public YatzyPointsHandler()
         {
             DieNumbers.Add(new YatzyPoint() { Name = "1" });
@@ -29,6 +29,41 @@ namespace YatzyApp.Models
             Combinations.Add(new YatzyPoint() { Name = "FullHouse" });
             Combinations.Add(new YatzyPoint() { Name = "Random" });
             Combinations.Add(new YatzyPoint() { Name = "Yatzy" });
+        }
+
+        public bool ValidatePoints(out string erroredPoint, out int erroredValue)
+        {
+            erroredPoint = null;
+            erroredValue = 0;
+            foreach (YatzyPoint item in DieNumbers)
+            {
+                int nameValue = int.Parse(item.Name);
+                int? pointsValue = item.Points;
+                if (pointsValue is not null && (pointsValue < 0 || pointsValue > 5 * nameValue || pointsValue % nameValue != 0))
+                {
+                    erroredPoint = item.Name;
+                    erroredValue = item.Points.Value;
+                    item.Points = null;
+                    return false;
+                }
+            }
+            //foreach (var item in Combinations)
+            //{
+            //    switch (item.Name)
+            //    {
+            //        case "OnePair":
+            //            if (item.Points is not null && (item.Points < 0 || item.Points > 5))
+            //            {
+            //                erroredPoint = item.Name;
+            //                erroredValue = item.Points.Value;
+            //                return true;
+            //            }
+            //            return false;
+            //        default:
+            //            return true;
+            //    }
+            //}
+            return true;
         }
     }
 }

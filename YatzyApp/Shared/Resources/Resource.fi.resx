@@ -123,6 +123,9 @@
   <data name="BigFlush" xml:space="preserve">
     <value>Iso suora</value>
   </data>
+  <data name="CantHaveValue" xml:space="preserve">
+    <value>ei voi saada arvoa </value>
+  </data>
   <data name="ClearPlayers" xml:space="preserve">
     <value>Poista pelaajat</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>Sulje</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Virhe</value>
   </data>
   <data name="FourNumbers" xml:space="preserve">
     <value>Neliluku</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="PlayerName" xml:space="preserve">
     <value>Pelaajan nimi:</value>
+  </data>
+  <data name="PointNamed" xml:space="preserve">
+    <value>Piste nimeltä </value>
   </data>
   <data name="Random" xml:space="preserve">
     <value>Sattuma</value>

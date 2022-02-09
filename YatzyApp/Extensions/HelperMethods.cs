@@ -37,7 +37,6 @@ namespace YatzyApp.Extensions
             {
                 Console.WriteLine($"Could not load culture {cultureString}, error was {ex.Message}.");
             }
-
         }
     }
 }

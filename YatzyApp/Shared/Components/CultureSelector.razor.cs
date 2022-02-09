@@ -14,7 +14,7 @@ namespace YatzyApp.Shared.Components
     {
         [Inject] public ILocalStorageService LocalStorage { get; set; }
         [Inject] public NavigationManager Navigation { get; set; }
-        [Inject] public IStringLocalizer<Resource> Localizer { get; set; }
+        [Inject] public IStringLocalizer<Resource> T { get; set; }
 
         private readonly CultureInfo[] supportedCultures = new[]
         {

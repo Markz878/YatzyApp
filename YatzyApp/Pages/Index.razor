@@ -1,42 +1,41 @@
 ﻿@page "/"
-@inject IStringLocalizer<Resource> localizer
 
 <div class="container">
-    <button class="btn" @onclick="()=>AddPlayerModalVisible=true">@localizer["AddPlayer"]</button>
-    <button class="btn" @onclick="ClearPoints">@localizer["ClearPoints"]</button>
-    <button class="btn" @onclick="ClearPlayers">@localizer["ClearPlayers"]</button>
+    <button class="btn" @onclick="ShowAddPlayerModal">@T["AddPlayer"]</button>
+    <button class="btn" @onclick="ClearPoints">@T["ClearPoints"]</button>
+    <button class="btn" @onclick="ClearPlayers">@T["ClearPlayers"]</button>
 </div>
 
-@if (Players.Count > 0)
+@if (players is not null && players.Count > 0)
 {
     <div class="container">
         <div class="player-column">
             <div class="block font-20em empty"></div>
-            @foreach (var item in Players[0].YatzyPoints.DieNumbers)
+            @foreach (var item in players[0].YatzyPoints.DieNumbers)
             {
                 <div class="block thick-border">@item.Name</div>
             }
-            <div class="block thick-border">@localizer["Sum"]</div>
-            <div class="block thick-border">@localizer["Bonus"]</div>
-            @foreach (var item in Players[0].YatzyPoints.Combinations)
+            <div class="block thick-border">@T["Sum"]</div>
+            <div class="block thick-border">@T["Bonus"]</div>
+            @foreach (var item in players[0].YatzyPoints.Combinations)
             {
-                <div class="block thick-border">@localizer[item.Name]</div>
+                <div class="block thick-border">@T[item.Name]</div>
             }
-            <div class="block thick-border">@localizer["Total"]</div>
+            <div class="block thick-border">@T["Total"]</div>
         </div>
-        @foreach (var p in Players)
+        @foreach (var p in players)
         {
             <div class="player-column">
                 <div class="block thick-border font-bold font-20em">@p.Name</div>
                 @foreach (var item in p.YatzyPoints.DieNumbers)
                 {
-                    <input class="block border" @bind="item.Points" @onfocusout="SaveState"/>
+                    <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p))/>
                 }
                 <div class="block thick-border">@p.YatzyPoints.DieNumberSum</div>
                 <div class="block thick-border">@p.YatzyPoints.Bonus</div>
                 @foreach (var item in p.YatzyPoints.Combinations)
                 {
-                    <input class="block border" @bind="item.Points" @onfocusout="SaveState"/>
+                    <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p))/>
                 }
                 <div class="block thick-border">@p.YatzyPoints.TotalSum</div>
             </div>
@@ -44,17 +43,21 @@
     </div>
 }
 
-<Modal Header="@localizer["AddPlayer"]" ShowDialog="AddPlayerModalVisible">
-    <EditForm OnValidSubmit="InsertPlayer" Model="NewPlayer">
+<Modal Header="@T["AddPlayer"]" ShowDialog="addPlayerModalVisible">
+    <EditForm OnValidSubmit="InsertPlayer" Model="newPlayer">
         <DataAnnotationsValidator/>
         <div class="form-group">
-            <label for="player-name"><b>@localizer["PlayerName"]</b></label>
-            <InputText id="player-name" class="name-input" @bind-Value="NewPlayer.Name" placeholder="@localizer["PlayerName"]" />
-            <ValidationMessage For="(()=>NewPlayer.Name)"/>
+            <label for="player-name"><b>@T["PlayerName"]</b></label>
+            <InputText id="player-name" @ref="nameInput" class="name-input" @bind-Value="newPlayer.Name" placeholder="@T["PlayerName"]" />
+            <ValidationMessage For="(()=>newPlayer.Name)"/>
         </div>
-        <button type="submit" class="btn btn-primary">@localizer["Submit"]</button>
-        <button class="btn btn-outline-secondary" @onclick="()=>AddPlayerModalVisible=false">@localizer["Close"]</button>
+        <button type="submit" class="btn btn-primary">@T["Submit"]</button>
+        <button class="btn btn-outline-secondary" @onclick="()=>addPlayerModalVisible=false">@T["Close"]</button>
     </EditForm>
+</Modal>
+
+<Modal Header="@T["Error"]" ShowDialog="addErrorModalVisible">
+    <p>@T["Error"]: @T["PointNamed"] @erroredPointName @T["CantHaveValue"] @erroredPointValue.</p>
 </Modal>
 
 

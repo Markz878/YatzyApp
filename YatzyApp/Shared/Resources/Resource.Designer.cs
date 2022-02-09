@@ -19,7 +19,7 @@ namespace YatzyApp.Shared.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -79,6 +79,15 @@ namespace YatzyApp.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to can&apos;t have value .
+        /// </summary>
+        public static string CantHaveValue {
+            get {
+                return ResourceManager.GetString("CantHaveValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear Players.
         /// </summary>
         public static string ClearPlayers {
@@ -102,6 +111,15 @@ namespace YatzyApp.Shared.Resources {
         public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -138,6 +156,15 @@ namespace YatzyApp.Shared.Resources {
         public static string PlayerName {
             get {
                 return ResourceManager.GetString("PlayerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point named.
+        /// </summary>
+        public static string PointNamed {
+            get {
+                return ResourceManager.GetString("PointNamed", resourceCulture);
             }
         }
         

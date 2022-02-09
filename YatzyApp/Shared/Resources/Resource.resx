@@ -123,6 +123,9 @@
   <data name="BigFlush" xml:space="preserve">
     <value>Big Flush</value>
   </data>
+  <data name="CantHaveValue" xml:space="preserve">
+    <value>can't have value </value>
+  </data>
   <data name="ClearPlayers" xml:space="preserve">
     <value>Clear Players</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="FourNumbers" xml:space="preserve">
     <value>Four Numbers</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="PlayerName" xml:space="preserve">
     <value>Player Name:</value>
+  </data>
+  <data name="PointNamed" xml:space="preserve">
+    <value>Point named</value>
   </data>
   <data name="Random" xml:space="preserve">
     <value>Random</value>
