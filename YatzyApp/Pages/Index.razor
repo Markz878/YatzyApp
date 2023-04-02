@@ -1,7 +1,7 @@
 ﻿@page "/"
 
 <div class="container">
-    <button class="btn" @onclick="ShowAddPlayerModal">@T["AddPlayer"]</button>
+    <button class="btn" @onclick="ShowAddPlayerModal" @ref="addPlayerButton">@T["AddPlayer"]</button>
     <button class="btn" @onclick="ClearPoints">@T["ClearPoints"]</button>
     <button class="btn" @onclick="ClearPlayers">@T["ClearPlayers"]</button>
 </div>

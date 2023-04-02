@@ -1,7 +1,6 @@
 ﻿<div class="selector">
     <label>
-        @T["SelectCulture"]
-        <select @bind="@Culture">
+        <select @bind="@Culture" @bind:after="SetCulture">
             @foreach (var culture in supportedCultures)
             {
                 <option value="@culture">@culture.DisplayName</option>

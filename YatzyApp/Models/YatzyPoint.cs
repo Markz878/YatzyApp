@@ -1,10 +1,7 @@
-﻿using System;
+﻿namespace YatzyApp.Models;
 
-namespace YatzyApp.Models
+public class YatzyPoint
 {
-    public class YatzyPoint
-    {
-        public string Name { get; set; }
-        public int? Points { get; set; }
-    }
+    public required string Name { get; set; }
+    public int? Points { get; set; }
 }
