@@ -5,7 +5,4 @@
     align-items: center;
     border-bottom: 1px solid #d6d5d5;
     height: 3.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 1;
 }

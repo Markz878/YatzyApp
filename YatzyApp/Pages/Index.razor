@@ -26,7 +26,7 @@
         @foreach (var p in players)
         {
             <div class="player-column">
-                <div class="block thick-border font-bold font-20em">@p.Name</div>
+                <div class="block thick-border font-bold font-20em sticky">@p.Name</div>
                 @foreach (var item in p.YatzyPoints.DieNumbers)
                 {
                     <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p))/>
