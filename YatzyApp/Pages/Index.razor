@@ -1,55 +1,51 @@
 ﻿@page "/"
 
-<div class="container">
-    <button class="btn" @onclick="ShowAddPlayerModal" @ref="addPlayerButton">@T["AddPlayer"]</button>
-    <button class="btn" @onclick="ClearPoints">@T["ClearPoints"]</button>
-    <button class="btn" @onclick="ClearPlayers">@T["ClearPlayers"]</button>
+<div class="btn-row">
+    <button class="btn" @onclick="ShowAddPlayerModal" @ref="addPlayerButton" disabled="@(players.Count>=4)">@T["AddPlayer"]</button>
+    <button class="btn" @onclick="ClearPoints" disabled="@(players.Count==0)">@T["ClearPoints"]</button>
+    <button class="btn" @onclick="ClearPlayers" disabled="@(players.Count == 0)">@T["ClearPlayers"]</button>
 </div>
 
 @if (players is not null && players.Count > 0)
 {
-    <div class="container">
-        <div class="player-column">
-            <div class="block font-20em empty"></div>
-            @foreach (var item in players[0].YatzyPoints.DieNumbers)
-            {
-                <div class="block thick-border">@item.Name</div>
-            }
-            <div class="block thick-border">@T["Sum"]</div>
-            <div class="block thick-border">@T["Bonus"]</div>
-            @foreach (var item in players[0].YatzyPoints.Combinations)
-            {
-                <div class="block thick-border">@T[item.Name]</div>
-            }
-            <div class="block thick-border">@T["Total"]</div>
-        </div>
+    <div class="container" style="max-width: @(200 * players.Count + 200)px">
+        <div class="block empty"></div>
+        @foreach (var item in players[0].YatzyPoints.DieNumbers)
+        {
+            <div class="block thick-border">@item.Name</div>
+        }
+        <div class="block thick-border">@T["Sum"]</div>
+        <div class="block thick-border">@T["Bonus"]</div>
+        @foreach (var item in players[0].YatzyPoints.Combinations)
+        {
+            <div class="block thick-border">@T[item.Name]</div>
+        }
+        <div class="block thick-border font-bold">@T["Total"]</div>
         @foreach (var p in players)
         {
-            <div class="player-column">
-                <div class="block thick-border font-bold font-20em sticky">@p.Name</div>
-                @foreach (var item in p.YatzyPoints.DieNumbers)
-                {
-                    <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p))/>
-                }
-                <div class="block thick-border">@p.YatzyPoints.DieNumberSum</div>
-                <div class="block thick-border">@p.YatzyPoints.Bonus</div>
-                @foreach (var item in p.YatzyPoints.Combinations)
-                {
-                    <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p))/>
-                }
-                <div class="block thick-border">@p.YatzyPoints.TotalSum</div>
-            </div>
+            <div class="block thick-border font-bold font-large sticky">@p.Name</div>
+            @foreach (var item in p.YatzyPoints.DieNumbers)
+            {
+                <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p)) />
+            }
+            <div class="block thick-border font-bold">@p.YatzyPoints.DieNumberSum</div>
+            <div class="block thick-border font-bold">@p.YatzyPoints.Bonus</div>
+            @foreach (var item in p.YatzyPoints.Combinations)
+            {
+                <input class="block border" @bind="item.Points" @onfocusout=@(()=>SaveState(p)) />
+            }
+            <div class="block thick-border font-bold">@p.YatzyPoints.TotalSum</div>
         }
     </div>
 }
 
 <Modal Header="@T["AddPlayer"]" ShowDialog="addPlayerModalVisible">
     <EditForm OnValidSubmit="InsertPlayer" Model="newPlayer">
-        <DataAnnotationsValidator/>
+        <DataAnnotationsValidator />
         <div class="form-group">
             <label for="player-name"><b>@T["PlayerName"]</b></label>
             <InputText id="player-name" @ref="nameInput" class="name-input" @bind-Value="newPlayer.Name" placeholder="@T["PlayerName"]" />
-            <ValidationMessage For="(()=>newPlayer.Name)"/>
+            <ValidationMessage For="(()=>newPlayer.Name)" />
         </div>
         <button type="submit" class="btn btn-primary">@T["Submit"]</button>
         <button class="btn btn-outline-secondary" @onclick="()=>addPlayerModalVisible=false">@T["Close"]</button>

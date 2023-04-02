@@ -55,6 +55,7 @@ public partial class Index
     {
         players.Add(newPlayer);
         addPlayerModalVisible = false;
+        await SaveState(newPlayer);
         newPlayer = new PlayerModel();
         await addPlayerButton.FocusAsync();
     }
