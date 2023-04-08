@@ -165,6 +165,9 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="Sum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
   <data name="ThreeNumbers" xml:space="preserve">
     <value>Three Numbers</value>
   </data>
